@@ -1,14 +1,19 @@
-//******************************FH******************************//
+// REQUIRING ALL THE MODULES
 
 
 require("dotenv").config()
-const express = require("express")
-const nodeMailer = require("nodemailer")
-const bodyParser = require("body-parser")
-const ejs = require("ejs")
-const mongoose = require('mongoose')
-const path = require("path")
 
+const express = require("express")
+
+const nodeMailer = require("nodemailer")
+
+const bodyParser = require("body-parser")
+
+const ejs = require("ejs")
+
+const mongoose = require('mongoose')
+
+const path = require("path")
 
 
 const app = express()
@@ -17,11 +22,16 @@ app.set("view engine", "ejs")
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(express.static(path.join(__dirname, "public")));
+
 app.use(express.json())
+
+// CONNECTING THE MONGOOSE DATABASE
 
 mongoose.connect("mongodb://localhost:27017/feedDB")
 
+// MAKING THE ITEMSCHEMA
 
 const itemsSchema = {
     username: String,
@@ -31,7 +41,12 @@ const itemsSchema = {
     rate: Number
 }
 
+// CONSTRUCTING A NEW MONGOOSE MODEL named ITEM
+
 const Item = new mongoose.model("Item", itemsSchema)
+
+
+// ROUTES SECTION
 
 
 
@@ -53,16 +68,9 @@ app.post("/", function(req, res) {
 
 
 
-
-
 app.post("/feedback", async function(req, res, next) {
 
-
-
     const { yourname, youremail, yoursubject, yourmessage, yourrate } = req.body
-
-
-
 
 
     async function mainMail(name, email, subject, message, rate) {
@@ -86,8 +94,6 @@ app.post("/feedback", async function(req, res, next) {
        <p>Name: ${req.body.name}, </p>
        <p>Message: ${req.body.message} </p>
        <p>Rating: ${req.body.rate} </p>
-      
-         
         `
         }
 
@@ -108,13 +114,8 @@ app.post("/feedback", async function(req, res, next) {
             } else {
                 console.log(result);
 
-
             }
         })
-
-
-
-
 
 
         // ***********************************************
@@ -123,20 +124,11 @@ app.post("/feedback", async function(req, res, next) {
             await transporter.sendMail(mailOption)
             return Promise.resolve("Message Sent Successfully!!")
 
-
-
         } catch (error) {
             return Promise.reject(error)
         }
 
-
-
     }
-
-
-
-
-
 
     try {
         await mainMail(yourname, youremail, yoursubject, yourmessage, yourrate)
@@ -148,24 +140,13 @@ app.post("/feedback", async function(req, res, next) {
         console.log(error);
     }
 
-
-
-
-
-
-
-
-
 })
-
-
-
 
 
 
 app.post("/dashboard", function(req, res) {
 
-    // console.log(req.body.email);
+
 
     Item.findOne({}, function(err, foundName) {
         if (!err) {
@@ -178,11 +159,6 @@ app.post("/dashboard", function(req, res) {
 
 
 })
-
-
-
-
-
 
 
 app.listen(3000, function() {
