@@ -108,6 +108,10 @@ To run this project, you will need to add the following environment variables to
 
 Emailine demo video: https://drive.google.com/file/d/1hDVnDgO0_lv1J56nGEysldC0EFzdgteB/view?usp=sharing
 
+or
+
+Youtube Link: https://youtu.be/1qZlITp2-r0
+
 
 ## Features
 
