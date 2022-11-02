@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Emailine</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="feedback-section">
+        <h1>EMAILINE</h1>
+        <div class="border"></div>
+        <form action="/feedback" method="post" class="feedback-form">
+            <input type="text" id="name" class="feedback-form-text" placeholder="Your name" name="yourname" required />
+            <input type="email" id="email" class="feedback-form-text" id="useremail" placeholder="Your email" name="youremail" required />
+            <input type="text" id="subject" class="feedback-form-text" name="yoursubject" placeholder="Subject" required />
+            <textarea id="message" class="feedback-form-message" placeholder="Your message" name="yourmessage"></textarea>
+            <input type="submit" id="form-submit" class="feedback-form-btn" value="Send" required />
+        </form>
+    </div>
+
+    <!-- <script src="js/app1.js"></script> -->
+</body>
+
+</html>
